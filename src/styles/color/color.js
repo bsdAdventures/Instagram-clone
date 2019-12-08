@@ -3,6 +3,7 @@ export const colors = {
   text: 'white',
   subtext: 'gray',
   highlight: 'blue',
+  icon: 'white',
   logo: [
     '#405DE6',
     '#5851DB',

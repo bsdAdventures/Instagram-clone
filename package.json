@@ -7,6 +7,7 @@
     "ios6": "react-native run-ios --simulator='iPhone 6'",
     "start": "react-native start",
     "test": "jest",
+    "xcode": "open ios/instagramClone.xcworkspace",
     "lint": "eslint ."
   },
   "dependencies": {
