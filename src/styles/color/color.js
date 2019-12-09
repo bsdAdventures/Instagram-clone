@@ -1,5 +1,6 @@
 export const colors = {
-  background: 'white',
+  background: 'rgb(255, 255, 255)',
+  header: 'rgb(245, 245, 245)',
   text: 'white',
   subtext: 'gray',
   highlight: 'blue',

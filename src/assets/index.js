@@ -1,3 +1,2 @@
-export const assets = {
-  title: require('./images/title.png'),
-};
+export * from './images';
+export * from './data';

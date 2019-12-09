@@ -1,6 +1,6 @@
 import {createStackNavigator} from 'react-navigation';
 import {Home} from '../container';
-import {colors} from '../styles';
+import {colors, responsive} from '../styles';
 
 export const homeStack = createStackNavigator(
   {
@@ -17,12 +17,12 @@ export const homeStack = createStackNavigator(
       //   fontSize: font.mdlg,
       // },
       headerStyle: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.header,
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
+        // height: responsive.hp('3'),
       },
-      headerTintColor: 'red',
       headerBackTitleVisible: false,
       headerTransparent: true,
     },

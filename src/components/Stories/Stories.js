@@ -17,6 +17,7 @@ const imageRatio = responsive.dimension.width / 5.3,
   customPadding = 5;
 
 export const Stories = props => {
+  console.log(props.name, 'pname');
   return (
     <TouchableOpacity
       disabled={props.disabled}
@@ -37,11 +38,11 @@ export const Stories = props => {
               resizeMode="cover"
             />
           )}
+          <View style={styles.textContainer}>
+            <Text style={styles.textStyle}>{`${props.name}`} </Text>
+          </View>
         </View>
       </LinearGradient>
-      <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{`${props.name}`} </Text>
-      </View>
     </TouchableOpacity>
   );
 };
