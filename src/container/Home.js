@@ -1,17 +1,28 @@
 import React, {Component} from 'react';
-import {Text, View, StatusBar, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {Stories, LogoTitle} from '../components';
+import {Stories, HomeLogo} from '../components';
 import {responsive, colors} from '../styles';
 import {users} from '../assets';
 
 class Home extends Component {
   static navigationOptions = {
-    title: 'hey',
-    headerTitle: <LogoTitle />,
-    headerLeft: <Feather name="camera" size={20} />,
+    headerTitle: <HomeLogo />,
+    headerLeft: (
+      <View
+        style={{
+          paddingHorizontal: 10,
+          flexDirection: 'row',
+        }}>
+        <Feather name="camera" size={20} />
+      </View>
+    ),
     headerRight: (
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingHorizontal: 10,
+        }}>
         <Feather name="tv" size={20} />
         <Feather name="send" size={20} />
       </View>
@@ -26,26 +37,14 @@ class Home extends Component {
           justifyContent: 'flex-start',
           paddingTop: responsive.hp('8'),
         }}>
-        {/* <StatusBar backgroundColor={colors.header} /> */}
         <View
           style={{
+            flex: 1,
             paddingVertical: 10,
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}>
-          <ScrollView
-            style={{flexDirection: 'row'}}
-            horizontal
-            showsHorizontalScrollIndicator={false}>
-            {users.map((user, index) => {
-              return (
-                <View key={index} style={{flexDirection: 'row'}}>
-                  <Stories image_url={user.image_url} name={user.name} />
-                </View>
-              );
-            })}
-          </ScrollView>
-          <View>
-            <Text>hey</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Stories data={users} />
           </View>
         </View>
       </View>

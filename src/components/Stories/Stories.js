@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -17,33 +17,45 @@ const imageRatio = responsive.dimension.width / 5.3,
   customPadding = 5;
 
 export const Stories = props => {
-  console.log(props.name, 'pname');
   return (
-    <TouchableOpacity
-      disabled={props.disabled}
-      onPress={props.onPress}
-      style={styles.storiesContainer}>
-      <LinearGradient
-        start={{x: 0.0, y: 1.0}}
-        end={{x: 1.0, y: 1.0}}
-        colors={[...colors.logo]}
-        style={styles.gradientContainer}>
-        <View style={styles.imagesContainer}>
-          {props.image_url === null ? (
-            <View style={styles.imagesStyle} />
-          ) : (
-            <Image
-              source={{uri: props.image_url}}
-              style={styles.imagesStyle}
-              resizeMode="cover"
-            />
-          )}
-          <View style={styles.textContainer}>
-            <Text style={styles.textStyle}>{`${props.name}`} </Text>
-          </View>
-        </View>
-      </LinearGradient>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={props.data}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item, index}) => (
+          <TouchableOpacity
+            key={index}
+            disabled={props.disabled}
+            onPress={props.onPress}
+            style={styles.storiesContainer}>
+            <LinearGradient
+              start={{x: 0.0, y: 1.0}}
+              end={{x: 1.0, y: 1.0}}
+              colors={[...colors.logo]}
+              style={styles.gradientContainer}>
+              <View style={styles.imagesContainer}>
+                {item.image_url === null ? (
+                  <View style={styles.imagesStyle} />
+                ) : (
+                  <Image
+                    source={{uri: item.image_url}}
+                    style={styles.imagesStyle}
+                    resizeMode="cover"
+                  />
+                )}
+              </View>
+            </LinearGradient>
+            <View style={styles.textContainer}>
+              <Text style={styles.textStyle} numberOfLines={1}>
+                {`${item.name}`}{' '}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
   );
 };
 
@@ -55,6 +67,9 @@ Stories.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   storiesContainer: {
     padding: customPadding,
     overflow: 'hidden',
@@ -83,15 +98,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   textContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
+    width: imageRatio,
   },
   textStyle: {
     textAlign: 'center',
     width: textRatio,
     paddingTop: 5,
-    color: colors.text,
+    color: colors.defaulttext,
     // fontFamily: font.primary,
     // fontSize: font.featuredlocation,
   },

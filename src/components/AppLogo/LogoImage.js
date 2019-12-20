@@ -3,7 +3,7 @@ import {Image, View} from 'react-native';
 import {assets} from '../../assets';
 import {responsive} from '../../styles';
 
-export const LogoTitle = () => {
+export const HomeLogo = () => {
   return (
     <View style={{justifyContent: 'center'}}>
       <Image

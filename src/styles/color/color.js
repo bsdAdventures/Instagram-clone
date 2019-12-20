@@ -2,9 +2,11 @@ export const colors = {
   background: 'rgb(255, 255, 255)',
   header: 'rgb(245, 245, 245)',
   text: 'white',
+  defaulttext: 'black',
   subtext: 'gray',
   highlight: 'blue',
   icon: 'white',
+
   logo: [
     '#405DE6',
     '#5851DB',
