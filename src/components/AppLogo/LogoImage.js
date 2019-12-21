@@ -5,7 +5,7 @@ import {responsive} from '../../styles';
 
 export const HomeLogo = () => {
   return (
-    <View style={{justifyContent: 'center'}}>
+    <View>
       <Image
         source={assets.title}
         style={{
