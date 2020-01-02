@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {Stories, HomeLogo, Post} from '../components';
-import {responsive, colors} from '../styles';
+import {responsive} from '../styles';
 import {users} from '../assets';
 
 class Home extends Component {
   static navigationOptions = {
     headerTitle: <HomeLogo />,
-    headerStyle: {height: 40, borderBottomWidth: 1, borderBottomColor: 'grey'},
     headerLeft: (
       <View
         style={{
@@ -43,19 +42,19 @@ class Home extends Component {
           justifyContent: 'flex-start',
           paddingTop: responsive.hp('8'),
         }}>
-        <View
+        <ScrollView
           style={{
             flex: 1,
-            paddingVertical: 10,
+            // paddingVertical: 10,
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{flexDirection: 'row', paddingVertical: 10}}>
             <Stories data={users} />
           </View>
           <View style={{flexDirection: 'column'}}>
             <Post data={users[0]} />
           </View>
-        </View>
+        </ScrollView>
       </View>
     );
   }

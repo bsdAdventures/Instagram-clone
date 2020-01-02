@@ -10,26 +10,18 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
-import {colors, responsive} from '../../styles';
+import {colors, styles} from '../../styles';
 
-const imageRatio = responsive.dimension.width / 5.3,
-  linearRatio = responsive.dimension.width / 5,
-  textRatio = linearRatio,
-  customPadding = 5;
-
-export const LinearAvatar = ({item }) => {
+export const LinearAvatar = ({url, imageStyle, gradientStyle}) => {
   return (
+    //linear circle
     <LinearGradient
       start={{x: 0.0, y: 1.0}}
       end={{x: 1.0, y: 1.0}}
       colors={[...colors.logo]}
-      style={styles.gradientContainer}>
+      style={gradientStyle}>
       <View style={styles.imagesContainer}>
-        <Image
-          source={{uri: item.image_url}}
-          style={styles.imagesStyle}
-          resizeMode="cover"
-        />
+        <Image source={{uri: url}} style={imageStyle} resizeMode="cover" />
       </View>
     </LinearGradient>
   );
@@ -61,10 +53,11 @@ export const Stories = props => {
             onPress={props.onPress}
             style={styles.storiesContainer}>
             {index === 0 ? (
+              //add story as the 0 index
               <View>
                 <Image
                   source={{uri: item.image_url}}
-                  style={styles.imagesStyle}
+                  style={styles.storyImagesStyle}
                   resizeMode="cover"
                 />
                 <Feather
@@ -75,20 +68,25 @@ export const Stories = props => {
                     position: 'absolute',
                     borderColor: 'white',
                     left: 50,
-                    top: 50,
+                    top: 40,
                   }}
                 />
                 <View style={styles.textContainer}>
-                  <Text style={styles.textStyle} numberOfLines={1}>
+                  <Text style={styles.storyTextStyle} numberOfLines={1}>
                     {`${item.name}`}{' '}
                   </Text>
                 </View>
               </View>
             ) : (
+              //all stories
               <View>
-                <LinearAvatar item={item} />
+                <LinearAvatar
+                  url={item.image_url}
+                  imageStyle={styles.storyImagesStyle}
+                  gradientStyle={styles.storyGradientContainer}
+                />
                 <View style={styles.textContainer}>
-                  <Text style={styles.textStyle} numberOfLines={1}>
+                  <Text style={styles.storyTextStyle} numberOfLines={1}>
                     {`${item.name}`}{' '}
                   </Text>
                 </View>
@@ -109,45 +107,3 @@ Stories.propTypes = {
   image_url: PropTypes.string,
   name: PropTypes.string,
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  storiesContainer: {
-    padding: customPadding,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
-  gradientContainer: {
-    width: linearRatio,
-    height: linearRatio,
-    borderRadius: linearRatio / 2,
-  },
-  imagesContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 5,
-    paddingHorizontal: 15,
-  },
-  imagesStyle: {
-    width: imageRatio,
-    height: imageRatio,
-    borderRadius: imageRatio / 2,
-    padding: 10,
-    alignSelf: 'center',
-    borderColor: 'white',
-    borderWidth: 4,
-    backgroundColor: colors.background,
-  },
-  textContainer: {
-    width: imageRatio,
-  },
-  textStyle: {
-    textAlign: 'center',
-    width: textRatio,
-    paddingTop: 5,
-    color: colors.defaulttext,
-  },
-});

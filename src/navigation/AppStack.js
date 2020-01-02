@@ -18,9 +18,9 @@ export const homeStack = createStackNavigator(
       // },
       headerStyle: {
         backgroundColor: colors.header,
-        elevation: 0,
-        shadowOpacity: 0,
-        borderBottomWidth: 0,
+        // elevation: 0,
+        // shadowOpacity: 0,
+        // borderBottomWidth: 0,
         // height: responsive.hp('3'),
       },
       headerBackTitleVisible: false,
